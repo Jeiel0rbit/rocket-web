@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lançamento do Foguete Coletivo</title>
+    <style>
+        :root {
+            --glow-color: #00aaff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100vw;
+            background-color: #0c0c1e;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        h1 {
+            font-size: 2.5vw;
+            text-shadow: 0 0 10px var(--glow-color);
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.5vw;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        #game-canvas {
+            background-color: #000000;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 170, 255, 0.5);
+            border: 2px solid var(--glow-color);
+            max-width: 90vw;
+            max-height: 80vh;
+            aspect-ratio: 600 / 800;
+        }
+
+        #launch-success {
+            display: none; /* Começa oculto */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(12, 12, 30, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid var(--glow-color);
+            box-shadow: 0 0 30px var(--glow-color);
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        #launch-success h2 {
+            margin: 0;
+            font-size: 2rem;
+            color: #4caf50;
+        }
+        
+        #restart-button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            color: white;
+            background-color: #0077c2;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 0 15px rgba(0, 119, 194, 0.7);
+        }
+
+        #restart-button:hover {
+            background-color: #0099ff;
+            transform: scale(1.05);
+        }
+        
+        /* Media queries para telas menores */
+        @media (max-width: 768px) {
+            h1 { font-size: 6vw; }
+            p { font-size: 4vw; }
+            #launch-success h2 { font-size: 1.5rem; }
+            #restart-button { font-size: 1rem; padding: 12px 25px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container" id="game-container">
+        <h1>Lançamento Coletivo</h1>
+        <p>Usuários Conectados: <span id="user-count">0</span></p>
+        <canvas id="game-canvas"></canvas>
+    </div>
+
+    <div id="launch-success">
+        <h2>Lançamento Concluído!</h2>
+        <p>Obrigado a todos pelo impulso!</p>
+        <button id="restart-button">Impulsionar Novamente</button>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
